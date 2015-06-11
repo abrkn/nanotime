@@ -7,7 +7,7 @@ function big(value) {
 var THOUSAND = big(1e3);
 var MILLION = big(1e6);
 
-var nanotime = module.exports = function() {
+var nanotime = function() {
     if (!exports.start) {
         exports.start = process.hrtime();
         exports.startMilli = big(new Date().getTime());
@@ -22,3 +22,9 @@ var nanotime = module.exports = function() {
         .add(big(hrtime[1]))
         .toString();
 };
+
+module.exports = exports = function() {
+    return exports.get();
+}
+
+exports.get = nanotime;
